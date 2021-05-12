@@ -272,7 +272,7 @@ class Duckling(object):
             return self._parse_string(time)
 
     def _parse_string(self, java_string):
-        return java_string
+        return str(java_string)
 
     def _parse_keyword(self, java_keyword, dim=None):
         if dim == Dim.DURATION:
@@ -286,4 +286,4 @@ class Duckling(object):
         return str(java_symbol.toString())[1:]
 
     def _parse_boolean(self, java_boolean):
-        return bool(strtobool(java_boolean.toString()))
+        return bool(strtobool(str(java_boolean.toString())))
