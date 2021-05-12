@@ -229,10 +229,11 @@ class Duckling(object):
         return result
 
     def _parse_float(self, java_number):
-        return float(java_number.toString())
+        # casting to str, due to change in data type handling in JPype>8
+        return float(str(java_number.toString()))
 
     def _parse_int(self, java_number):
-        return int(java_number.toString())
+        return int(str(java_number.toString()))
 
     def _parse_value(self, java_value, dim=None):
         _dims = {
@@ -282,7 +283,7 @@ class Duckling(object):
             return self._parse_string(java_keyword)
 
     def _parse_symbol(self, java_symbol):
-        return java_symbol.toString()[1:]
+        return str(java_symbol.toString())[1:]
 
     def _parse_boolean(self, java_boolean):
         return bool(strtobool(java_boolean.toString()))
