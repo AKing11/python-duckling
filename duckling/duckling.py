@@ -258,6 +258,7 @@ class Duckling(object):
         if not dim or dim not in _dims:
             return self._parse_string(java_value)
         try:
+            print(java_value, type(java_value))
             return _dims[dim](java_value)
         except AttributeError:
             return 'ERROR: {msg}'.format(msg=self._parse_string(java_value))
