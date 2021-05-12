@@ -160,7 +160,7 @@ class Duckling(object):
         return self._parse_result(duckling_result)
 
     def _parse_reference_time(self, reference_time):
-        date_info = parser.parse(reference_time)
+        date_info = parser.parse(str(reference_time))
         utc_offset = int(date_info.utcoffset().total_seconds()) // 3600 if date_info.utcoffset() else 0
         return (utc_offset, date_info.year,
                 date_info.month, date_info.day,
@@ -258,7 +258,6 @@ class Duckling(object):
         if not dim or dim not in _dims:
             return self._parse_string(java_value)
         try:
-            print(dim, java_value, type(java_value))
             return _dims[dim](java_value)
         except AttributeError:
             return 'ERROR: {msg}'.format(msg=self._parse_string(java_value))
@@ -266,7 +265,7 @@ class Duckling(object):
     def _parse_time(self, time):
         if self.parse_datetime:
             try:
-                return parser.parse(time)
+                return parser.parse(str(time))
             except ValueError:
                 return None
         else:
