@@ -217,7 +217,7 @@ class Duckling(object):
         for field in java_dict.iterator():
             key = field.getKey().toString()[1:]
             if key in _functions_with_dim.keys():
-                result[key] = _functions_with_dim[key](str(field.getValue()), dim)
+                result[key] = _functions_with_dim[key](field.getValue(), dim)
             else:
                 result[key] = _functions[key](field.getValue())
         return result
